@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <!-- our css file should be below all other styles so that we can override it-->
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <h1 id="page-heading">
+            <i class="fas fa-address-book"></i>
+            Contacts List
+        </h1>
+        <div class="contact-list-container">
+            <ul>
+                <%for (let i of contact_list) { %>
+                    <li class="contact">
+                        <div class="details">
+                        <p><%=i.name%></p>
+                        <p><%=i.phone%></p>
+                        </div>
+                        <div class="delete-button">
+                            <!-- <a href="/delete-contact/?phone=<%=i.phone%>"> -->
+                            <a href="/delete-contact/?id=<%=i._id%>">
+                                <i class="fas fa-window-close"></i>
+                            </a>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+        <form action="/create-contact" method="POST" id="new-contact-form">
+            <input name = "name" type="text" placeholder="Enter Name:" required>
+            <input name = "phone" type="number" placeholder="Enter phone:" required>
+            <button type="Add"  class="btn btn-secondary">Add contact</button> 
+        </form>
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
